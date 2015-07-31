@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./anaTemplate.xhtml">
+
+            <ui:define name="content">
+                
+                <h:form>
+                    <ui:remove>  <p:messages/> </ui:remove>
+                    <p:growl sticky="false"/>
+                    <p:panel header="Müşteri Bilgisini Giriniz">
+                        
+                        <p:tabView>
+                            <p:tab title="Kişisel Bilgiler">
+                            <p:panelGrid columns="2">
+                                
+                                <p:outputLabel for="ad" value="Ad :"/>
+                                <p:inputText id="ad"                                       
+                                             label="Ad"
+                                             value="#{cust.ad}"
+                                             required="true"
+                                             />
+                                
+                                <p:outputLabel for="soyad" value="Soyad :"/>
+                                <p:inputText id="soyad"
+                                             label="Soyad"
+                                             value="#{cust.soyad}"
+                                             required="true"
+                                             />
+                                
+                                <p:outputLabel for="sifre" value="Şifre :"/>
+                                <p:password id="sifre"
+                                            label="Sifre"
+                                            value="#{cust.sifre}"
+                                            required="true"
+                                    />
+                                
+                                <p:outputLabel value="Doğum Tarihi :"/>
+                                <p:calendar id="dogtar"
+                                            label="Doğum Tarihi"
+                                            value="#{cust.dogtar}"
+                                            showOn="button"
+                                            navigator="true"
+                                            yearRange="c-100:c+100"
+                                            maxdate="c"
+                                            mindate="c"
+                                            locale="tr"
+                                            readonly="true"/>
+                                
+                                 <p:outputLabel value=""/>
+                                 <p:commandButton value="Kaydet"
+                                                  action="#{cust.kaydetCustomer()}"
+                                                  update="form"
+                                                  ajax="false"/>
+                                
+                            </p:panelGrid>
+                            </p:tab>
+                            
+                            <p:tab title="Adres Bilgisi">
+                                
+                                
+                            </p:tab>
+                            
+                            <p:tab title="Telefon Bilgisi">
+                                
+                                <p:panelGrid columns="2">
+                                    
+                                    <p:outputLabel for="evTel" value="Ev Tel:"/>
+                                    <p:inputMask id="evTel"
+                                                 mask="(312)-999 99 99" size="15"
+                                                 value="#{cust.evTel}"/>
+                                    
+                                     <p:outputLabel for="cepTel" value="Cep Tel:"/>
+                                     <p:inputMask id="cepTel"
+                                                 mask="(599)-999 99 99" size="15"
+                                                 value="#{cust.cepTel}"/>
+                                    
+                                </p:panelGrid>
+                                
+                            </p:tab>
+                            
+                          </p:tabView>
+                        
+                        </p:panel>
+                    
+                </h:form>
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
